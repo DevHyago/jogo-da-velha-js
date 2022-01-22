@@ -26,6 +26,14 @@ for(let i = 0; i < boxes.length; i++){
          //Computar Jogada
          if(player1 == player2){
             player1++;
+
+            //Fazendo a IA jogar
+            if(secondPlayer == 'ai-player'){
+               //Função para executar jogada
+               computerPlay();
+               player2++;
+            }
+
          }else{
             player2++;
          }
@@ -33,6 +41,23 @@ for(let i = 0; i < boxes.length; i++){
          checkWinCondition();
 
       }
+
+   });
+}
+
+//2 players ou IA
+for(let i = 0; i < buttons.length; i++){
+   buttons[i].addEventListener('click', function() {
+      secondPlayer = this.getAttribute("id");
+
+      for(let j = 0; j < buttons.length; j++){
+         buttons[j].style.display = "none";
+      }
+
+      setTimeout(() => {
+         let container = document.querySelector("#container");
+         container.classList.remove("hide");
+      }, 300);
 
    });
 }
@@ -220,7 +245,7 @@ function declareWiner(winner){
    //esconde mensagem
    setTimeout(() => {
       messageContainer.classList.add("hide");
-   }, 2000);
+   }, 1000);
 
    //zerar as jogadas
    player1 = 0;
@@ -232,4 +257,33 @@ function declareWiner(winner){
       boxesToRemove[i].parentNode.removeChild(boxesToRemove[i]);
    }
 
+}
+
+//Lógica da jogada da maquina
+function computerPlay(){
+
+   let cloneO = o.cloneNode(true);
+   counter = 0;
+   filled = 0;
+
+   for(let i = 0; i < boxes.length; i++){
+      let randomNumber = Math.floor(Math.random() * 5);
+
+      //Só preenche se o filho estiver vazio
+      if(boxes[i].childNodes[0] == undefined){
+         if(randomNumber <= 1){
+            boxes[i].appendChild(cloneO);
+            counter++;
+            break;
+         //Checagem de quantas estão preenchidas
+         }
+      }else{
+         filled++;
+      }
+
+   }
+
+   if(counter == 0 && filled < 9){
+      computerPlay();
+   }
 }
