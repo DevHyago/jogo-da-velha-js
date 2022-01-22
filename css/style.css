@@ -5,6 +5,7 @@ body{
 
 h1{
    font-size: 42px;
+   color: #262b2e;
 }
 
 #buttons-container button{
@@ -76,11 +77,11 @@ h1{
 }
 
 /*Classe de esconder*/
-/*
+
 .hide{
    display: none !important;
 }
-*/
+
 
 /*Placar*/
 #scoreborad-container{
@@ -90,6 +91,7 @@ h1{
    position: relative;
    margin-left: auto;
    margin-right: auto;
+   color: #262b2e;
 }
 
 .score-box{
@@ -120,9 +122,8 @@ h1{
    top: 150px;
    width: 500px;
    font-size: 50px;
-   background-color: #1769b0;
+   background-color: #262b2e;
    color: #fff;
    padding: 20px;
    border-radius: 5px;
-   display: none;
 }
